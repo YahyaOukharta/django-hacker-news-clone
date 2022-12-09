@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="columns">
+        <div class="column is-12">
+            <h1 class="title">{{user.username}} Votes</h1>
+            <hr>
+            <a href="{% url 'userprofile' user.username %}">Profile</a> | <a
+                href="{% url 'submissions' user.username %}">Submissions</a>
+        </div>
+    </div>
+    <hr>
+    <div class="columns">
+        <div class="column is-12">
+            <table class="table is-stripped is-fullwidth">
+                <tbody>
+                    {% for story in stories %}
+                    <tr>
+                        <td>{{ forloop.counter}}.</td>
+                        <td>
+                            <a href="{{ story.url }}" target="_blank">{{ story.title }}</a>
+                            <p>
+                                {{ story.number_of_votes }} votes |
+                                by <a href="{% url 'userprofile' story.created_by.username %}">{{ story.created_by.username }}</a> | {{ story.created_at|timesince }} ago
+
+                                | <a href="{% url 'detail' story.id %}">Discuss</a>
+
+                            </p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

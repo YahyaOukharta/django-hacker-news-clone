@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="columns">
+            <div class="columns is-12">
+                <h1 class="title">New Story</h1>
+            </div>
+        </div>
+                <form action="." method="post">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-success">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            <!-- </div>
+        </div> -->
+    </div>
+
+{% endblock %}
